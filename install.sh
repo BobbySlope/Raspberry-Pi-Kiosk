@@ -7,7 +7,7 @@
 #usage		       :sudo bash install.sh
 #==============================================================================
 
-OE_USER="pi"
+OE_USER="hoobs"
 OE_HOME="/home/$OE_USER"
 URL="https://www.tonybenoy.com"
 
