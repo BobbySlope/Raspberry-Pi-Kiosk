@@ -7,6 +7,11 @@
 #version         :0.2   
 #usage		       :sudo bash install.sh
 #==============================================================================
+echo -e "* Installing openbox"
+sudo apt-get update
+sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit xserver-xorg-video-fbdev openbox -y
+sudo apt-get install --no-install-recommends chromium -y
+
 
 echo -e "* Removing Alt-Ctrl-Del"
 
@@ -18,6 +23,7 @@ echo -e "* Removing keybinds"
 #Feel free to add any other keybinds that I may have missed
 #Refer to http://openbox.org/wiki/Help:Bindings#Key_bindings for more help
 sudo rm -rf /home/hoobs/.config/openbox/lxde-rc.xml
+sudo touch /home/hoobs/.config/openbox/lxde-rc.xml
 
 cat <<EOF > /home/hoobs/.config/openbox/lxde-rc.xml
 <?xml version="1.0" encoding="UTF-8"?>
