@@ -1,4 +1,38 @@
 #!/bin/bash
+
+# DO NOT USE THIS SCRIPT - ITS IN TESTING STATE AND MAY CORRUPT YOUR HOOBS DEVICE
+
+
+# HOW TO RUN THE SCRIPT
+
+# sudo wget -q -O - https://raw.githubusercontent.com/BobbySlope//Raspberry-Pi-Kiosk/main/install.sh | sudo bash -
+
+
+
+##################################################################################################
+# ext_display_hoobs.                                                                             #
+# Copyright (C) 2022 HOOBS                                                                       #
+#                                                                                                #
+# This program is free software: you can redistribute it and/or modify                           #
+# it under the terms of the GNU General Public License as published by                           #
+# the Free Software Foundation, either version 3 of the License, or                              #
+# (at your option) any later version.                                                            #
+#                                                                                                #
+# This program is distributed in the hope that it will be useful,                                #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of                                 #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                                  #
+# GNU General Public License for more details.                                                   #
+#                                                                                                #
+# You should have received a copy of the GNU General Public License                              #
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.                          #
+##################################################################################################
+# Author: Bobby Slope     
+
+
+
+
+
+
 #title           :install.sh
 #description     :This script will create a service to open a chromium kiosk window in Raspbian Stretch and will also prevent any further user intervention 
 #author		       :me@tonybenoy.com
