@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#sudo wget -q -O - https://raw.githubusercontent.com/BobbySlope/Raspberry-Pi-Kiosk/main/install.sh | sudo bash -
+
 #title           :install.sh
 #description     :This script will create a service to open a chromium kiosk window in Raspbian Stretch and will also prevent any further user intervention 
 #author		       :me@tonybenoy.com
