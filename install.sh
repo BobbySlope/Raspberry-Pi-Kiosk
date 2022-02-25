@@ -5,7 +5,7 @@
 
 # HOW TO RUN THE SCRIPT
 
-# sudo wget -q -O - https://raw.githubusercontent.com/BobbySlope//Raspberry-Pi-Kiosk/main/install.sh | sudo bash -
+# sudo wget -q -O - https://raw.githubusercontent.com/BobbySlope/Raspberry-Pi-Kiosk/master/install.sh | sudo bash -
 
 
 
@@ -43,7 +43,7 @@
 
 OE_USER="hoobs"
 OE_HOME="/home/$OE_USER"
-URL="https://www.tonybenoy.com"
+URL="https://localhost"
 
 echo -e "* Removing Alt-Ctrl-Del"
 
