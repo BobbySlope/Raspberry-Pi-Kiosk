@@ -2,7 +2,7 @@
 Script to install a Chromium based Web Kiosk on Raspberry Pi
 
 # Usage
-$ git clone https://github.com/tonybenoy/Raspberry-Pi-Kiosk.git
+$ git clone https://github.com/BobbySlope/Raspberry-Pi-Kiosk.git
 
 $ cd Raspberry-Pi-Kiosk
 
