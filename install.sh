@@ -12,24 +12,45 @@ sudo apt-get update
 sudo apt-get install --no-install-recommends xserver-xorg x11-xserver-utils xinit xserver-xorg-video-fbdev openbox -y
 sudo apt-get install --no-install-recommends chromium -y
 
-echo -e "* Create startup script file"
+echo "Setup Autologin to CLI...."
+sudo mkdir /lib/systemd/system/getty@tty1.service.d/
+cat > /lib/systemd/system/getty@tty1.service.d/20-autologin.conf <<EOL
+#Autologin to Console
+[Service]
+ExecStart=
+ExecStart=-/sbin/agetty --autologin hoobs --noclear %I $TERM
+EOL
+echo "----------------------------------------------------------------"
+echo "Autologin CLI Installed"
+echo "----------------------------------------------------------------"
 
-cat <<EOF > /home/hoobs/script.sh
-#! /bin/bash
-rm -rf /home/hoobs/.config/chromium
-rm -rf /home/hoobs/.cache/chromium
-DISPLAY=:0 chromium-browser -kiosk http://localhost
-EOF
+echo "add kiosk script...."
+sudo rm -rf /opt/kiosk.sh
+cat > /opt/kiosk.sh <<EOL
+#!/bin/sh
+xset dpms
+xset s noblank
+xset s 300
+openbox-session &
+DISPLAY=:0 chromium /
+--no-first-run /
+--disable /
+--disable-translate /
+--disable-infobars /
+--disable-suggestions-service /
+--disable-save-password-bubble /
+--start-maximized /
+--kiosk /
+--disable-session-crashed-bubble /
+--incognito /
+http://localhost
+EOL
 
-chmod 777 /home/hoobs/script.sh
-
-echo -e "* Removing Lxpanels"
-
-sudo apt remove lxpanel -y
-sudo apt autoremove -y
+echo "make script executable...."
+sudo chmod 777 /opt/kiosk.sh
 
 echo -e "* Create service file"
-
+sudo rm -rf /home/hoobs/chromiumkiosk.service
 cat <<EOF > /home/hoobs/chromiumkiosk.service
 [Unit]
 Description=Chromium Onboot
@@ -37,8 +58,7 @@ After=graphical-session.target
 
 [Service]
 User=hoobs
-Group=hoobs
-ExecStart=  /home/hoobs/script.sh
+ExecStart=  /opt/kiosk.sh
 Restart=on-failure
 
 [Install]
@@ -49,6 +69,7 @@ echo -e "* Security Init File"
 mv /home/hoobs/chromiumkiosk.service /etc/systemd/system/chromiumkiosk.service
 
 echo -e "* Startup Startup"
+sudo systemctl deamon-reload
 sudo systemctl enable chromiumkiosk.service
 
 echo -e "* Starting Service"
