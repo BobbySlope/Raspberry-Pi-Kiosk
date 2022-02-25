@@ -26,30 +26,13 @@ echo "----------------------------------------------------------------"
 echo "Autologin CLI Installed"
 echo "----------------------------------------------------------------"
 
-echo "add kiosk script...."
-sudo rm -rf /opt/kiosk.sh
-cat > /opt/kiosk.sh <<EOL
-#!/bin/sh
-xset dpms
-xset s noblank
-xset s 300
-openbox-session &
-DISPLAY=:0 chromium /
---no-first-run /
---disable /
---disable-translate /
---disable-infobars /
---disable-suggestions-service /
---disable-save-password-bubble /
---start-maximized /
---kiosk /
---disable-session-crashed-bubble /
---incognito /
-http://localhost
+cat > /etc/xdg/lxsession/LXDE/autostart <<EOL
+@xscreensaver -no-splash
+@xset s off @xset -dpms @xset s noblank
+@sed -i 's/"exited_cleanly": false/"exited_cleanly": true/' ~/.config/chromium/Default/Preferences
+@chromium --noerrdialogs --kiosk http://localhost
 EOL
 
-echo "make script executable...."
-sudo chmod 777 /opt/kiosk.sh
 
 echo -e "* Create service file"
 sudo rm -rf /home/hoobs/chromiumkiosk.service
@@ -60,7 +43,7 @@ After=graphical-session.target
 
 [Service]
 User=hoobs
-ExecStart=  /opt/kiosk.sh
+ExecStart=  /etc/init.d/lightdm
 Restart=on-failure
 
 [Install]
